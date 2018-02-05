@@ -14,7 +14,7 @@ bash install-dlib.sh
 ```
 
 ## Install OpenCV
-Installing dlib has never been this easy. Just run:
+Installing OpenCV has never been this easy. Just run:
 ```
 coming soon
 ```
