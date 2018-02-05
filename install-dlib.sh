@@ -72,7 +72,7 @@ INFO ""
 
 INFO "Step 2. Install dependencies"
 RUN sudo apt-get install -y git
-RUN sudo apt-get install -y build-essential cmake ..
+RUN sudo apt-get install -y build-essential cmake
 INFO ""
 INFO ""
 
