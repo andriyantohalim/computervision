@@ -113,7 +113,3 @@ COMMAND "#cd $WORK/dlib/examples/build/"
 
 INFO "Run an example, e.g:"
 COMMAND "#./dnn_mmod_face_detection_ex ../dlib-models/mmod_human_face_detector.dat ../faces/*.jpg"
-
-
-
-
