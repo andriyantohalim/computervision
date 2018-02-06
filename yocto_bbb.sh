@@ -61,24 +61,53 @@ function COMMAND {
 
 if [ -z $WORK ]; then WORK=$PWD;fi
 
+INFO "Step 1. Update Ubuntu/Debian"
+RUN sudo apt-get -y update
+RUN sudo apt-get -y upgrade
+RUN sudo apt-get -y dist-upgrade
+RUN sudo apt-get -y autoremove
+INFO ""
+INFO ""
+
+INFO "Step 2. Install necessary dependencies"
 RUN sudo apt-get install -y build-essential chrpath diffstat gawk libncurses5-dev texinfo
+INFO ""
+INFO ""
 
+INFO "Step 3. Clone poky-rocko"
 RUN git clone -b rocko git://git.yoctoproject.org/poky.git poky-rocko
+INFO ""
+INFO ""
+
+INFO "Step 4. Clone meta-openembedded"
 RUN git clone -b rocko git://git.openembedded.org/meta-openembedded
+INFO ""
+INFO ""
+
+INFO "Step 5. Clone meta-qt5"
 RUN git clone -b rocko https://github.com/meta-qt5/meta-qt5.git
+INFO ""
+INFO ""
 
+INFO "Step 6. Clone meta-linaro"
+RUN git clone -b rocko https://github.com/linaro-home/meta-linaro
+INFO ""
+INFO ""
 
-#RUN mkdir $WORK/bbb
-#RUN cd $WORK/bbb
-##### RUN git clone git://github.com/beagleboard/meta-beagleboard
+INFO "Step 7. Clone meta-bbb"
 RUN git clone -b rocko git://github.com/jumpnow/meta-bbb
+INFO ""
+INFO ""
 
-
+INFO "Step 8. Initialize build environment"
 RUN source $WORK/poky-rocko/oe-init-build-env $WORK/build
+INFO ""
+INFO ""
 
-
-#RUN cp $WORK/bbb/meta-bbb/conf/local.conf.sample $WORK/build/conf/local.conf
-#RUN cp $WORK/bbb/meta-bbb/conf/bblayers.conf.sample $WORK/build/conf/bblayers.conf
-
-bitbake core-image-minimal
-
+INFO "You can now run the following command to start bitbake"
+COMMAND "#bitbake core-image-minimal"
+INFO "Bitbake will take some time depending on your system specs and internet connection."
+INFO "In case you see an error, run the following command:"
+COMMAND "#bitbake -c cleansstate.file && bitbake file"
+INFO ""
+INFO ""
