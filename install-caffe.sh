@@ -113,6 +113,7 @@ INFO ""
 read
 
 INFO "Getting MNIST dataset"
+RUN cd $WORK/caffe
 RUN ./data/mnist/get_mnist.sh
 RUN ./examples/mnist/create_mnist.sh
 INFO ""
@@ -125,10 +126,8 @@ INFO ""
 read
 
 INFO "Training LeNet ..."
-./examples/mnist/train_lenet.sh
+RUN ./examples/mnist/train_lenet.sh
 
 
 
 INFO "More info on http://caffe.berkeleyvision.org/tutorial/"
-INFO ""
-INFO ""
