@@ -7,8 +7,8 @@ Clone this repository:
 git clone https://github.com/andriyantohalim/computervision
 ```
 
-## Install OpenCV
-Installing OpenCV has never been this easy. Just run:
+## Install Caffe
+Installing Caffe has never been this easy. Just run:
 ```
 bash install-caffe.sh
 ```
