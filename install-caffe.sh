@@ -88,7 +88,7 @@ INFO ""
 
 INFO "Step 5. Install Python Dependencies"
 RUN cd $WORK/caffe/python
-RUN for req in $(cat requirements.txt); do pip install $req; done
+RUN for req in $(cat requirements.txt); do sudo pip install $req; done
 RUN export PYTHONPATH=$WORK/caffe/python:$PYTHONPATH
 INFO ""
 INFO ""
