@@ -100,6 +100,7 @@ INFO ""
 read
 
 INFO "Resuming Compilation ..."
+RUN cd $WORK/caffe
 RUN mkdir build
 RUN cd build
 RUN cmake ..
