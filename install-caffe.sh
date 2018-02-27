@@ -86,6 +86,13 @@ RUN cd $WORK/caffe
 INFO ""
 INFO ""
 
+INFO "Step 5. Install Python Dependencies"
+RUN cd $WORK/caffe/python
+RUN for req in $(cat requirements.txt); do pip install $req; done
+RUN export PYTHONPATH=$WORK/caffe/python:$PYTHONPATH
+INFO ""
+INFO ""
+
 INFO "Please go to $WORK/caffe/CMakeLists.txt to verify your CPU/GPU only installation:" 
 INFO 'If you are using CPU only, please set caffe_option(CPU_ONLY  "Build Caffe without CUDA support" ON)'
 INFO ""
