@@ -68,7 +68,7 @@ RUN sudo apt-get install --no-install-recommends libboost-all-dev
 RUN sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
 RUN sudo apt-get install libatlas-base-dev
 RUN sudo apt-get install libopenblas-dev
-RUN sudo apt-get install python-dev
+RUN sudo apt-get install python-dev python-pip python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
 INFO ""
 INFO ""
 
