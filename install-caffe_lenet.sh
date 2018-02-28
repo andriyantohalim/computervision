@@ -61,6 +61,12 @@ function COMMAND {
 
 if [ -z $WORK ]; then WORK=$PWD;fi
 
+INFO "Make sure you have install Caffe prior to running this script"
+COMMAND "#source install-caffe.sh"
+INFO "Press Enter to continue, Ctrl+C to exit"
+INFO ""
+INFO ""
+read
 
 INFO "Getting MNIST dataset"
 RUN cd $WORK/caffe
