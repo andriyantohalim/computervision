@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ######################################
-# INSTALL CAFFE ON UBUNTU OR DEBIAN   #
+# INSTALL CAFFE ON UBUNTU OR DEBIAN  #
 ######################################
 
 if [ ! -z $1 ] && ([ $1 = '-h' ] || [ $1 = '--help' ]); then
@@ -62,21 +62,22 @@ function COMMAND {
 if [ -z $WORK ]; then WORK=$PWD;fi
 
 
-INFO "Step 1a. Install dependencies"
-RUN sudo apt-get install fort77 gfortran
+IINFO "Step 1. Install dependencies"
 RUN sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
 RUN sudo apt-get install --no-install-recommends libboost-all-dev
 RUN sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
 RUN sudo apt-get install libatlas-base-dev
 RUN sudo apt-get install libopenblas-dev
 
-INFO "Step 1b. Install Python dependencies"
+INFO "Step 2. Install Python dependencies"
+RUN sudo -H pip install -U pip
+RUN sudo apt-get install fort77 gfortran
 RUN sudo apt-get install python-dev python-pip python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
 INFO ""
 INFO ""
 
 
-INFO "Step 3. Clone dlib from repository"
+INFO "Step 3. Clone Caffe from repository"
 RUN git clone https://github.com/BVLC/caffe.git
 INFO ""
 INFO ""
