@@ -62,20 +62,19 @@ function COMMAND {
 if [ -z $WORK ]; then WORK=$PWD;fi
 
 
-INFO "Step 1a. Install dependencies"
+INFO "Step 1. Install dependencies"
 RUN sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
 RUN sudo apt-get install --no-install-recommends libboost-all-dev
 RUN sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
 RUN sudo apt-get install libatlas-base-dev
 RUN sudo apt-get install libopenblas-dev
 
-INFO "Step 1b. Install Python dependencies"
+INFO "Step 2. Install Python dependencies"
 RUN sudo -H pip install -U pip
 RUN sudo apt-get install fort77 gfortran
 RUN sudo apt-get install python-dev python-pip python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
 INFO ""
 INFO ""
-
 
 INFO "Step 3. Clone Single Shot Detector from repository"
 RUN git clone https://github.com/weiliu89/caffe.git
@@ -83,7 +82,6 @@ RUN cd $WORK/caffe
 RUN git checkout ssd
 INFO ""
 INFO ""
-
 
 INFO "Step 4. Configure Caffe for installation (CPU only)"
 RUN cd $WORK/caffe
@@ -99,7 +97,6 @@ export PYTHONPATH=$WORK/caffe/python:$PYTHONPATH
 INFO ""
 INFO ""
 
-
 INFO "Step 7. Make and Install"
 RUN cd $WORK/caffe
 var=$(nproc)
@@ -107,7 +104,6 @@ RUN sudo make all -j$var
 RUN sudo make pycaffe
 RUN sudo make test -j$var
 RUN sudo make runtest -j$var
-
 
 INFO "==================================================================="
 INFO "Installation is completed."
@@ -147,5 +143,3 @@ INFO ""
 
 INFO "You can now run the following command:"
 COMMAND "#python examples/ssd/ssd_pascal_webcam.py"
-
-
