@@ -10,7 +10,7 @@ git clone https://github.com/andriyantohalim/computervision
 ## Install Caffe
 Installing Caffe has never been this easy. Just run:
 ```
-bash install-caffe.sh
+source install-caffe.sh
 ```
 
 ## Install dlib
