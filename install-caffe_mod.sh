@@ -97,6 +97,7 @@ INFO "Step 5. Install Python Dependencies"
 RUN cd $WORK/caffe
 var=$(nproc)
 RUN sudo make all -j$var
+RUN sudo make pycaffe
 RUN sudo make test -j$var
 RUN sudo make runtest -j$var
 
