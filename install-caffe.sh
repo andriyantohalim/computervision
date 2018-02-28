@@ -107,6 +107,7 @@ RUN cmake ..
 var=$(nproc)
 RUN make all -j$var
 RUN sudo make install
+RUN sudo make pycaffe
 RUN sudo make runtest
 
 INFO "==================================================================="
