@@ -61,13 +61,14 @@ function COMMAND {
 
 if [ -z $WORK ]; then WORK=$PWD;fi
 
-
 INFO "Step 1. Install dependencies"
 RUN sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
 RUN sudo apt-get install --no-install-recommends libboost-all-dev
 RUN sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
 RUN sudo apt-get install libatlas-base-dev
 RUN sudo apt-get install libopenblas-dev
+INFO ""
+INFO ""
 
 INFO "Step 2. Install Python dependencies"
 RUN sudo -H pip install -U pip
@@ -76,12 +77,10 @@ RUN sudo apt-get install python-dev python-pip python-numpy python-scipy python-
 INFO ""
 INFO ""
 
-
 INFO "Step 3. Clone Caffe from repository"
 RUN git clone https://github.com/BVLC/caffe.git
 INFO ""
 INFO ""
-
 
 INFO "Step 4. Configure Caffe for installation (CPU only)"
 RUN cd $WORK/caffe
@@ -94,7 +93,6 @@ export PYTHONPATH=$WORK/caffe/python:$PYTHONPATH
 INFO ""
 INFO ""
 
-
 INFO "Step 5. Install Python Dependencies"
 RUN cd $WORK/caffe
 var=$(nproc)
@@ -102,7 +100,6 @@ RUN sudo make all -j$var
 RUN sudo make pycaffe
 RUN sudo make test -j$var
 RUN sudo make runtest -j$var
-
 
 INFO "==================================================================="
 INFO "Installation is completed."
