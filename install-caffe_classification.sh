@@ -72,7 +72,6 @@ RUN cd $WORK/caffe
 
 INFO "Getting pre-trained CaffeNet model"
 RUN ./scripts/download_model_binary.py $WORK/caffe/models/bvlc_reference_caffenet
-
 INFO ""
 INFO ""
 
