@@ -62,7 +62,7 @@ function COMMAND {
 if [ -z $WORK ]; then WORK=$PWD;fi
 
 
-IINFO "Step 1. Install dependencies"
+INFO "Step 1. Install dependencies"
 RUN sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
 RUN sudo apt-get install --no-install-recommends libboost-all-dev
 RUN sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
