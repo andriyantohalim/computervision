@@ -143,3 +143,9 @@ INFO ""
 
 INFO "You can now run the following command:"
 COMMAND "#python examples/ssd/ssd_pascal_webcam.py"
+
+INFO "==================================================================="
+INFO "Task completed."
+INFO "==================================================================="
+INFO ""
+INFO ""
