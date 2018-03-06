@@ -87,6 +87,8 @@ INFO "Step 4. Configure Caffe for installation (CPU only)"
 RUN cd $WORK/caffe
 RUN cp Makefile.config.example Makefile.config
 sed -i "s/# CPU_ONLY := 1/CPU_ONLY := 1/" Makefile.config
+sed -i "s/(PYTHON_INCLUDE) \/usr\/local\/include /(PYTHON_INCLUDE) \/usr\/local\/include \/usr\/include\/hdf5\/serial\//" Makefile.config
+sed -i "s/(PYTHON_LIB) \/usr\/local\/lib \/usr\/lib /(PYTHON_LIB) \/usr\/local\/lib \/usr\/lib \/usr\/lib\/x86_64-linux-gnu\/hdf5\/serial\//" Makefile.config
 
 INFO "Step 5. Install Python Dependencies"
 RUN cd $WORK/caffe/python
