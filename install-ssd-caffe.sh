@@ -63,7 +63,7 @@ if [ -z $WORK ]; then WORK=$PWD;fi
 
 
 INFO "Step 1. Install dependencies"
-RUN sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev libhdf5-dev protobuf-compiler
+RUN sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
 RUN sudo apt-get install --no-install-recommends libboost-all-dev
 RUN sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev
 RUN sudo apt-get install libatlas-base-dev
@@ -85,14 +85,13 @@ INFO ""
 
 INFO "Step 4. Configure Caffe for installation (CPU only)"
 RUN cd $WORK/caffe
-RUN cp Makefile.config.example Makefile.config
-sed -i "s/# CPU_ONLY := 1/CPU_ONLY := 1/" Makefile.config
-sed -i "s/(PYTHON_INCLUDE) \/usr\/local\/include /(PYTHON_INCLUDE) \/usr\/local\/include \/usr\/include\/hdf5\/serial\//" Makefile.config
-sed -i "s/(PYTHON_LIB) \/usr\/local\/lib \/usr\/lib /(PYTHON_LIB) \/usr\/local\/lib \/usr\/lib \/usr\/lib\/x86_64-linux-gnu\/hdf5\/serial\//" Makefile.config
+RUN cp ../Makefile.config.cpu_only Makefile.config
+#RUN cp Makefile.config.example Makefile.config
+#sed -i "s/# CPU_ONLY := 1/CPU_ONLY := 1/" Makefile.config
 
 INFO "Step 5. Install Python Dependencies"
 RUN cd $WORK/caffe/python
-for req in $(cat requirements.txt); do pip install $req; done
+for req in $(cat requirements.txt); do sudo pip install $req; done
 
 INFO "Step 6. Export Python Path"
 export PYTHONPATH=$WORK/caffe/python:$PYTHONPATH
@@ -102,10 +101,10 @@ INFO ""
 INFO "Step 7. Make and Install"
 RUN cd $WORK/caffe
 var=$(nproc)
-RUN make all -j$var
-RUN make pycaffe
-RUN make test -j$var
-RUN make runtest -j$var
+RUN sudo make all -j$var
+RUN sudo make pycaffe
+RUN sudo make test -j$var
+RUN sudo make runtest -j$var
 
 INFO "==================================================================="
 INFO "Installation is completed."
@@ -140,7 +139,6 @@ INFO ""
 
 INFO "Please go to Caffe root folder"
 COMMAND "#cd $WORK/caffe/"
-RUN cd $WORK/caffe/
 INFO ""
 
 INFO "You can now run the following command:"
