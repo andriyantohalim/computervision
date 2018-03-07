@@ -59,7 +59,7 @@ function COMMAND {
 }
 ################################################
 
-if [ -z $WORK ]; then WORK=$PWD;fi
+if [ -z $WORK_CAFFE ]; then WORK_CAFFE=$PWD;fi
 
 
 IINFO "Step 1. Install dependencies"
@@ -84,22 +84,22 @@ INFO ""
 
 
 INFO "Step 4. Configure Caffe for installation (CPU only)"
-RUN cd $WORK/caffe
-RUN cp Makefile.config.example Makefile.config
-sed -i "s/# CPU_ONLY := 1/CPU_ONLY := 1/" Makefile.config
-sed -i "s/(PYTHON_INCLUDE) \/usr\/local\/include /(PYTHON_INCLUDE) \/usr\/local\/include \/usr\/include\/hdf5\/serial\//" Makefile.config
-sed -i "s/(PYTHON_LIB) \/usr\/local\/lib \/usr\/lib /(PYTHON_LIB) \/usr\/local\/lib \/usr\/lib \/usr\/lib\/x86_64-linux-gnu\/hdf5\/serial\//" Makefile.config
+RUN cd $WORK_CAFFE/caffe
+RUN cp ../Makefile.config.cpu_only Makefile.config
+#sed -i "s/# CPU_ONLY := 1/CPU_ONLY := 1/" Makefile.config
+#sed -i "s/(PYTHON_INCLUDE) \/usr\/local\/include /(PYTHON_INCLUDE) \/usr\/local\/include \/usr\/include\/hdf5\/serial\//" Makefile.config
+#sed -i "s/(PYTHON_LIB) \/usr\/local\/lib \/usr\/lib /(PYTHON_LIB) \/usr\/local\/lib \/usr\/lib \/usr\/lib\/x86_64-linux-gnu\/hdf5\/serial\//" Makefile.config
 
 
-RUN cd $WORK/caffe/python
+RUN cd $WORK_CAFFE/caffe/python
 for req in $(cat requirements.txt); do pip install $req; done
-export PYTHONPATH=$WORK/caffe/python:$PYTHONPATH
+export PYTHONPATH=$WORK_CAFFE/caffe/python:$PYTHONPATH
 INFO ""
 INFO ""
 
 
 INFO "Step 5. Install Python Dependencies"
-RUN cd $WORK/caffe
+RUN cd $WORK_CAFFE/caffe
 var=$(nproc)
 RUN make all -j$var
 RUN make pycaffe
