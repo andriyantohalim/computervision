@@ -6,7 +6,7 @@ Installing these frameworks, however, can sometimes be very frustating due to un
 
 
 ## IMPORTANT
-There is a bug with CUDA installation. Work in progress
+There is a compatibility issue when CUDA exists in the machine. The scrips usually will fail. Work in progress.
 
 ## Getting Started
 Open the terminal and clone this repository:
