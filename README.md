@@ -4,6 +4,10 @@ Starting a computer vision project must not always be done from scratch. Plenty 
 
 Installing these frameworks, however, can sometimes be very frustating due to unclear documentations and missing dependencies. The following shell scripts in this repository address such issue by helping the users to automate the installation of the frameworks.
 
+
+## IMPORTANT
+There is a bug with CUDA installation. Work in progress
+
 ## Getting Started
 Open the terminal and clone this repository:
 ```
